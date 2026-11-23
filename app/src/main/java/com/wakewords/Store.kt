@@ -33,7 +33,7 @@ object Store {
 }
 
 object Sched {
-    private fun next(a: Alarm): Long {
+    fun next(a: Alarm): Long {
         val c = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, a.hour); set(Calendar.MINUTE, a.minute); set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
             if (timeInMillis <= System.currentTimeMillis()) add(Calendar.DAY_OF_YEAR, 1)
@@ -49,6 +49,6 @@ object Sched {
         c.getSystemService(AlarmManager::class.java).setAlarmClock(AlarmManager.AlarmClockInfo(at, show), p)
     }
     fun set(c: Context, a: Alarm) = fire(c, next(a), pi(c, a.id, false))
-    fun snooze(c: Context, id: Int) = fire(c, System.currentTimeMillis() + 300000, pi(c, id, true))
+    fun snooze(c: Context, id: Int, ms: Long = 300000) = fire(c, System.currentTimeMillis() + ms, pi(c, id, true))
     fun cancel(c: Context, id: Int) = c.getSystemService(AlarmManager::class.java).cancel(pi(c, id, false))
 }

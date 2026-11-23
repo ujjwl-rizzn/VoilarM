@@ -6,7 +6,7 @@ import kotlin.math.sin
 
 /** Original animated background: drifting layered sound-wave ribbons over a gradient. */
 class WaveBackground(c: Context, private val top: Int, private val bottom: Int, private val wave: Int,
-                     private val speed: Float = 1f) : View(c) {
+                     private val speed: Float = 1f, private val strength: Float = 1f) : View(c) {
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)
     private val path = Path()
     private var t = 0f
@@ -24,7 +24,7 @@ class WaveBackground(c: Context, private val top: Int, private val bottom: Int, 
                 x += 12f
             }
             path.lineTo(w, h); path.close()
-            p.color = wave; p.alpha = 18 + i * 9
+            p.color = wave; p.alpha = ((10 + i * 5) * strength).toInt().coerceAtMost(255)
             cv.drawPath(path, p)
         }
         postInvalidateOnAnimation()
