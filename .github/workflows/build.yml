@@ -36,10 +36,10 @@ jobs:
       - name: Publish VoilarM.apk to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.0-beta
-          name: VoilarM v1.0.0-beta
+          tag_name: v1.1.0-beta
+          name: VoilarM v1.1.0-beta
           body: |
-            Direct Android APK download for VoilarM.
-            Tap VoilarM.apk below to download and install on Android (enable "Install unknown apps" when prompted).
-            On first launch, tap 1. Allow mic & notifications and 2. Allow background ringing (set to Unrestricted or Don't optimize).
+            Direct Android APK download for VoilarM v1.1.0-beta.
+            Tap VoilarM.apk below to download and install on Android (tap "More details -> Install anyway" if Play Protect prompts).
+            Uninstall the old v1.0.0-beta build once before installing this update.
           files: VoilarM.apk
